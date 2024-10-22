@@ -1,42 +1,68 @@
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 
 * {
-  font-family: "EB Garamond", serif;
+  font-family: "Montserrat", sans-serif;
   font-style: normal;
 }
 
 body{
-    background-color: hsl(240, 60%, 70%);
+    background-color: hsl(210, 60%, 90%);
     height: 100vh;
     margin: 0;
-}
-
-h4{
-    font-weight: 100;
-}
-input{
-    padding: 0;
-}
-.container{
     display: flex;
-    align-items: center;
     justify-content: center;
-    flex-direction: column;
-    margin-top:50px;
-    border: 0.5px solid gray;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.4); /* Fondo rojo semitransparente */
+    align-items: center;
 }
 
-h2{
-    text-align: center;
+h2, h4{
+    font-family: "EB Garamond", serif;
+    color: hsl(210, 30%, 30%);
+}
+
+.container{
+    max-width: 600px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    background-color: rgba(255, 255, 255, 0.85);
+}
+
+label {
+    font-weight: 600;
+    color: hsl(210, 30%, 30%);
+}
+
+input, select{
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    transition: border 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: hsl(210, 70%, 50%);
+    box-shadow: 0 0 5px hsl(210, 70%, 50%);
+}
+
+input[type="submit"], input[type="reset"]{
+    width: 100%;
+    padding: 12px;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover{
+    background-color: hsl(210, 70%, 50%);
+}
+
+input[type="reset"]:hover{
+    background-color: hsl(0, 0%, 70%);
 }
 
 #btns{
     display: flex;
-    justify-content: space-evenly;
-}
-
-input[type="submit"], input[type="reset"]{
-    width: 140px;
+    gap: 10px;
 }
