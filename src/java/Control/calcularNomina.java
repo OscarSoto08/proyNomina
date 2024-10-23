@@ -4,6 +4,8 @@
  */
 package Control;
 
+import Modelo.Empleado;
+import Modelo.Nomina;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -70,19 +72,56 @@ public class calcularNomina extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet calcularNomina</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet calcularNomina at " + request.getContextPath() + ", from method post</h1>");
-            out.println("</body>");
-            out.println("</html>");
+//        response.setContentType("text/html;charset=UTF-8");
+//        try (PrintWriter out = response.getWriter()) {
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet calcularNomina</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>Servlet calcularNomina at " + request.getContextPath() + ", from method post</h1>");
+//            out.println("</body>");
+//            out.println("</html>");
+//        }
+
+        String id = request.getParameter("id");
+        String nombre = request.getParameter("nombre");
+        String apellido = request.getParameter("apellido");
+        int diasTrabajados = Integer.parseInt(request.getParameter("dias"));
+        int salarioBase = Integer.parseInt(request.getParameter("salario"));
+        switch (salarioBase) {
+            case 1:
+                salarioBase = 1300000;
+                break;
+            case 2:
+                salarioBase = 1500000;
+                break;
+            case 3: 
+                salarioBase = 2000000;
+                break;
+            case 4: 
+                salarioBase = 2500000;
+                break;
+            case 5:
+                salarioBase = 3000000;
+                break;
+            default:
+                throw new AssertionError();
         }
+        Empleado objEmp = new Empleado(
+                id,
+                nombre,
+                apellido,
+                salarioBase
+        );
+        
+        Nomina objNomina = new Nomina(objEmp, diasTrabajados);
+        objNomina.calcular();
+        
+        request.setAttribute("nomina", objNomina);
+        request.getRequestDispatcher("/nomina.jsp").forward(request, response);
     }
 
     /**
