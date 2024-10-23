@@ -12,6 +12,11 @@
         <title>JSP Page</title>
         <%@page import="Modelo.*" %>
         <%
+            Boolean desdeServlet = (Boolean) request.getAttribute("nomina");
+            if(desdeServlet == null || !desdeServlet){
+                response.sendRedirect("index.jsp");
+                return;
+            }
             //Se inicializan las variables
             Nomina objNomina = (Nomina) request.getAttribute("nomina");
             Empleado objEmp = objNomina.getEmpleado();
